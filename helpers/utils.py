@@ -1,6 +1,7 @@
 import os
 import pickle
 from pypdf import PdfReader
+import pandas as pd
 from config.azure_config import DATA_PATH
 
 def load_data():
@@ -29,3 +30,11 @@ def load_pdf(file):
         if t:
             text += t
     return text
+
+def load_file(file):
+    if file.type == "application/pdf":
+        return load_pdf(file)
+    elif file.type in ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "text/csv"]:
+        return pd.read_excel(file) if file.type.endswith("sheet") else pd.read_csv(file)
+    else:
+        raise ValueError("Unsupported file type")

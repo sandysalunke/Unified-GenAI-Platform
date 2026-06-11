@@ -1,6 +1,5 @@
 from config.azure_config import client, WHISPER_MODEL, CHAT_MODEL
 
-
 def transcribe_audio(file_path):
     with open(file_path, "rb") as audio_file:
         transcript = client.audio.transcriptions.create(
@@ -36,3 +35,4 @@ def process_meeting(transcript):
         temperature=0.3
     )
     return response.choices[0].message.content
+    

@@ -1,16 +1,64 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+from openai import AzureOpenAI
+from config.azure_config import client, CHAT_MODEL
 
-def analyze_excel(file):
-    df = pd.read_excel(file)
-    return df.describe().to_string()
+def generate_code(df, user_query):
+    prompt = f"""
+    You are a Python data analyst.
 
-def handle_request(input_data):
-    file = input_data.get("file")
-    if not file:
-        return "Excel file is required", 400
+    Data columns:
+    {list(df.columns)}
+
+    User question:
+    {user_query}
+
+    STRICT RULES:
+    - Only return valid Python code
+    - No explanations
+    - No markdown (no ``` blocks)
+    - Use dataframe name: df
+    - Store final result in variable 'result'
+    - If visualization is useful, include matplotlib code and use streamlit to display it (st.pyplot())
+    """
+
+    response = client.chat.completions.create(
+        model=CHAT_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
+    )
+
+    raw_code = response.choices[0].message.content
+    return clean_code(raw_code)
+
+
+def run_code(code, df):
+    if "import os" in code or "open(" in code:
+        raise Exception("Unsafe code detected")
+
+    safe_globals = {"pd": __import__("pandas")}
+    local_vars = {"df": df}
+
+    exec(code, safe_globals, local_vars)
+
+    return local_vars.get("result", None)
+
+
+def plot_if_possible(result):
+    if isinstance(result, pd.DataFrame):
+        try:
+            result.plot()
+            plt.title("Generated Chart")
+            st.pyplot(plt)
+        except:
+            pass
+
+def clean_code(code):
+    # Remove markdown formatting
+    code = code.replace("```python", "")
+    code = code.replace("```", "")
     
-    try:
-        analysis_result = analyze_excel(file)
-        return analysis_result, 200
-    except Exception as e:
-        return str(e), 500
+    # Remove leading/trailing spaces
+    code = code.strip()
+
+    return code

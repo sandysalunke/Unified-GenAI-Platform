@@ -8,19 +8,20 @@ st.set_page_config(page_title="GenAI Copilot", layout="wide")
 # ---------------------------
 st.sidebar.title("🧠 GenAI Copilot")
 
-feature = st.sidebar.radio(
-    "Select Feature",
-    ["Text AI", "Image AI", "Meeting Assistant", "Excel Analytics", "Audio Transcription"]
-)
-
 # Map UI → router key
 feature_map = {
     "Text AI": "text",
-    "Image AI": "image",
+    "Image Generation": "image",
     "Meeting Assistant": "meeting",
     "Excel Analytics": "excel",
-    "Audio Transcription": "audio"
+    "Audio Transcription": "audio",
+    "Image to Text": "img2text"
 }
+
+feature = st.sidebar.radio(
+    "Select Feature",
+    [f for f in feature_map.keys()]
+)
 
 selected_feature = feature_map[feature]
 
@@ -36,7 +37,7 @@ if selected_feature == "text":
     route(selected_feature)
     
 # ---------------------------
-# IMAGE AI UI
+# IMAGE GENERATION UI
 # ---------------------------
 elif selected_feature == "image":
     route(selected_feature)
@@ -50,12 +51,8 @@ elif selected_feature == "meeting":
 # # ---------------------------
 # # EXCEL ANALYTICS UI
 # # ---------------------------
-# elif selected_feature == "excel":
-
-#     file = st.file_uploader("Upload Excel", type=["xlsx"])
-
-#     if file:
-#         st.write(route(selected_feature, file))
+elif selected_feature == "excel":
+    route(selected_feature)
 
 # # ---------------------------
 # # AUDIO TRANSCRIPTION UI

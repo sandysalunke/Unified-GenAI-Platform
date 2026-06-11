@@ -1,4 +1,4 @@
-from ui.components import text_component, image_component, meeting_component
+from ui.components import text_component, image_component, meeting_component, excel_component
 
 '''
 def route(request_type, input_data):
@@ -24,5 +24,7 @@ def route(request_type):
         return image_component.render()
     elif request_type == 'meeting':
         return meeting_component.render()
+    elif request_type == 'excel':
+        return excel_component.render()
     else:
         return "Invalid request type", 400
