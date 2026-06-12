@@ -19,11 +19,12 @@ def render():
     # Function to run code from history and display results
     def run_code(code):
         try:
-            result = data_service.run_code(code, st.session_state.df)
+            with st.spinner("Executing..."):
+                result = data_service.run_code(code, st.session_state.df)
 
-            st.write("### Result")
-            if result is not None:
-                st.chat_message("assistant").write(result)
+                st.write("### Result")
+                if result is not None:
+                    st.chat_message("assistant").write(result)
 
         except Exception as e:
             st.error(f"Error executing code: {e}")

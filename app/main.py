@@ -14,7 +14,7 @@ feature_map = {
     "Image Generation": "image",
     "Meeting Assistant": "meeting",
     "Excel Analytics": "excel",
-    "Audio Transcription": "audio",
+    "Speech to Text": "speech2text",
     "Image to Text": "img2text"
 }
 

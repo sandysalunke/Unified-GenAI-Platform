@@ -40,4 +40,3 @@ def render():
 
             # Display response immediately
             st.chat_message("assistant").write(answer[0])
-    

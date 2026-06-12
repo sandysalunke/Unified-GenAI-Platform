@@ -9,7 +9,7 @@ def render():
             with st.chat_message(role):
                 if role == "assistant" and isinstance(msg, bytes):
                     st.write("Here is your generated image:")
-                    st.image(msg)
+                    st.image(msg, width=400)
                 else:
                     st.write(msg)
 

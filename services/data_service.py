@@ -19,7 +19,8 @@ def generate_code(df, user_query):
     - No markdown (no ``` blocks)
     - Use dataframe name: df
     - Store final result in variable 'result'
-    - If visualization is useful, include matplotlib code and use streamlit to display it (st.pyplot())
+    - If visualization is useful, include matplotlib code and use streamlit to display it (st.pyplot(fig))
+    - Use plot size (10,6) for matplotlib charts
     """
 
     response = client.chat.completions.create(
