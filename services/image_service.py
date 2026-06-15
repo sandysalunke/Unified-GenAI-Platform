@@ -23,4 +23,4 @@ def handle_request(prompt):
         image_data = generate_image(prompt)
         return image_data, 200
     except Exception as e:
-        return str(e), 500
+        return "We couldn't generate the image. Please try again.", 500

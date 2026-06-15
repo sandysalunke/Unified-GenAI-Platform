@@ -31,7 +31,7 @@ def render():
             # ✅ Show spinner ABOVE input using placeholder
             with spinner_placeholder:
                 with st.spinner("Thinking..."):
-                    answer = text_service.handle_request(prompt)
+                    answer = text_service.handle_request(st.session_state.chat_history)
             
             # Clear spinner (optional)
             spinner_placeholder.empty()
