@@ -14,7 +14,6 @@ feature_map = {
     "Image Generation": "image",
     "Meeting Assistant": "meeting",
     "Excel Analytics": "excel",
-    "Speech to Text": "speech2text",
     "Image to Text": "img2text"
 }
 
@@ -53,13 +52,3 @@ elif selected_feature == "meeting":
 # # ---------------------------
 elif selected_feature == "excel":
     route(selected_feature)
-
-# # ---------------------------
-# # AUDIO TRANSCRIPTION UI
-# # ---------------------------
-# elif selected_feature == "audio":
-
-#     file = st.file_uploader("Upload Audio", type=["wav", "mp3"])
-
-#     if file:
-#         st.write(route(selected_feature, file))
