@@ -1,1 +1,2 @@
 "# Unified-GenAI-Platform" 
+Command to run: python -m streamlit run app/main.py
