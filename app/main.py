@@ -14,7 +14,8 @@ feature_map = {
     "Image Generation": "image",
     "Meeting Assistant": "meeting",
     "Excel Analytics": "excel",
-    "Image to Text": "image2text"
+    "Image to Text": "image2text",
+    "Database Search": "DBSearch"
 }
 
 feature = st.sidebar.radio(
@@ -58,3 +59,10 @@ elif selected_feature == "excel":
 # # ---------------------------
 elif selected_feature == "image2text":
     route(selected_feature)
+
+# # ---------------------------
+# # DATABASE SEARCH
+# # ---------------------------
+elif selected_feature == "DBSearch":
+    route(selected_feature)
+ 

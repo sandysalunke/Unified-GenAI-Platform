@@ -10,13 +10,11 @@ def render():
                 if role == "user" and isinstance(msg, bytes):
                     st.image(msg, width=400)
                 else:
-                    st.write("Here is the extracted text:")
                     st.write(msg)
 
     if "image2text_history" not in st.session_state:
         st.session_state.image2text_history = []
 
-    
     if "uploader_key" not in st.session_state:
         st.session_state.uploader_key = 0
     
