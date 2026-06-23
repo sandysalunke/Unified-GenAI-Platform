@@ -9,7 +9,7 @@ Command to run: python -m streamlit run app/main.py
 
 
 ## Image Generation
-- Generates any image for the user prompt
+- Generates any image for the given prompt
 - Persists history, until the page is refreshed
 
 ## Meeting assistant
@@ -25,15 +25,11 @@ Command to run: python -m streamlit run app/main.py
 
 ## Image to Text
 - Accepts JPG, PNG file formats
-- Extracts the text oot of image and generates image discription
+- Extracts the text out of image and generates image discription
 - Persists history, until the page is refreshed
 
 ## Database Search
 - Receives user prompt and search the database
-- Translates the user prompt into QSL query and then execute it
+- Translates the user prompt into SQL query and then execute it
 - Translate the query result in business language
-- To create the database, please execute this command
-python helpers/createSQLiteDB.py
-
-## Screenshot of UI:
-![alt text](image.png)
+- To create the database, please execute this command: python helpers/createSQLiteDB.py
