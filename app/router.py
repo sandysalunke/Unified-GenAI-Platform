@@ -1,4 +1,4 @@
-from ui.components import text_component, image_component, meeting_component, excel_component, image2text_component, dbsearch_component
+from ui.components import text_component, image_component, meeting_component, excel_component, image2text_component, dbsearch_component, rdbsearch_component
 
 def route(request_type):
     if request_type == 'text':
@@ -13,5 +13,7 @@ def route(request_type):
         return image2text_component.render()
     elif request_type == 'DBSearch':
         return dbsearch_component.render()
+    elif request_type == 'RDBSearch':
+        return rdbsearch_component.render()
     else:
         return "Invalid request type", 400
