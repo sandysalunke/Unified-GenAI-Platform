@@ -4,13 +4,15 @@ from helpers import SQLite
 
 def generate_query(prompt):
     prompt = f"""
-    - Generate SQL query for the user prompt
-    - User prompt: {prompt}
-    - Limit the records to Max 10
+    - You are a SQL expert.
+    - Generate SQL query for the user prompt.
+    
+    STRICT RULES:
+    - Limit results where needed.
     - Generate ONLY SELECT queries. Never modify data.
-    - Only return valid SQL query
-    - No explanations
-    - No markdown (no ``` blocks)
+    - Only return valid SQL query.
+    - No explanations.
+    - No markdown (no ``` blocks).
 
     Table: sales
     Columns:
@@ -19,6 +21,8 @@ def generate_query(prompt):
     - revenue (float)
     - cost (float)
     - date (date)
+
+    User prompt: {prompt}
     """
     response = client.chat.completions.create(
         model=CHAT_MODEL,
@@ -60,4 +64,4 @@ def handle_request(prompt):
 
         return result, 200
     except Exception as e:
-        return "Sorry, we couldn't generate the text. Please try again.", 500
+        return "Sorry, I couldn't process that. Please try rephrasing.", 500
